@@ -45,5 +45,9 @@ public interface IPersonaService {
     List<PersonasHabilidades> getPersonaHabilidades(Integer id);
 
 
-    void editarPersona(Integer id, Personas personas);
+    boolean editarPersona(Integer id, Personas personas);
+
+    PersonasEstudios getEstudioPersona(int id);
+
+    void editarEstudioPersona(int id, ModelPerEst personasEstudios);
 }

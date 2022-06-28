@@ -23,14 +23,6 @@ public class PersonasEstudios {
     @JoinColumn(name = "id_instituto", referencedColumnName = "id_instituto")
     private Educaciones educacionesByIdInstituto;
 
-    public int getIdPersonasEstudios() {
-        return idPersonasEstudios;
-    }
-
-    public void setIdPersonasEstudios(int idPersonasEstudios) {
-        this.idPersonasEstudios = idPersonasEstudios;
-    }
-
     public Integer getAnioInicio() {
         return anioInicio;
     }
@@ -47,7 +39,21 @@ public class PersonasEstudios {
         this.anioFinal = anioFinal;
     }
 
+    public int getIdPersonasEstudios() {
+        return idPersonasEstudios;
+    }
 
+    public void setIdPersonasEstudios(int idPersonasEstudios) {
+        this.idPersonasEstudios = idPersonasEstudios;
+    }
+
+    public Integer getAnioInicio(Integer anioInicio) {
+        return this.anioInicio;
+    }
+
+    public Integer getAnioFinal(Integer anioFinal) {
+        return this.anioFinal;
+    }
 
     public Personas getPersonasByIdPersona() {
         return personasByIdPersona;
@@ -63,5 +69,19 @@ public class PersonasEstudios {
 
     public void setEducacionesByIdInstituto(Educaciones educacionesByIdInstituto) {
         this.educacionesByIdInstituto = educacionesByIdInstituto;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonasEstudios that = (PersonasEstudios) o;
+        return idPersonasEstudios == that.idPersonasEstudios && Objects.equals(anioInicio, that.anioInicio) && Objects.equals(anioFinal, that.anioFinal) ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idPersonasEstudios,  anioInicio, anioFinal);
     }
 }

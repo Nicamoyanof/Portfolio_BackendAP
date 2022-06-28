@@ -38,8 +38,8 @@ public class PersonasController {
     }
 
     @PutMapping("api/persona/{id}")
-    public void editarPersona(@PathVariable Integer id, @RequestBody Personas personas){
-        iPersonaService.editarPersona(id,personas);
+    public boolean editarPersona(@PathVariable Integer id, @RequestBody Personas personas){
+        return iPersonaService.editarPersona(id,personas);
     }
 
    //<-----  CONTROLLERS PERSONAS ESTUDIOS ----->
@@ -66,6 +66,16 @@ public class PersonasController {
     @DeleteMapping("api/persona/estudio/{id}")
     public void eliminarPersonaEstudio(@PathVariable Integer id){
         iPersonaService.eliminarPersonaEstudio(id);
+    }
+
+    @GetMapping("api/persona/estudio/{id}")
+    public PersonasEstudios getEstudioPersona(@PathVariable int id){
+        return iPersonaService.getEstudioPersona(id);
+    }
+
+    @PutMapping("api/persona/estudio/{id}")
+    public void editarEstudioPersona(@PathVariable int id, @RequestBody ModelPerEst personasEstudios){
+        iPersonaService.editarEstudioPersona(id, personasEstudios);
     }
 
     //<-------CONTROLLERS PERSONAS HABILIDADES ------->

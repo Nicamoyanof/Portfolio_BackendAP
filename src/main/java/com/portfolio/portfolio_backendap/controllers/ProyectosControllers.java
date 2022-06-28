@@ -47,8 +47,13 @@ public class ProyectosControllers {
     }
 
     @DeleteMapping("api/proyecto/habilidades/{id}")
-    public void eliminarHabilidadProyecto(@PathVariable Integer id){
+    public void eliminarHabilidadProyecto(@PathVariable int id){
         iProyectosService.eliminarHabilidadProyecto(id);
+    }
+
+    @DeleteMapping("api/proyecto/{id}/habilidades")
+    public void eliminarProyectoHabilidad(@PathVariable Integer id){
+        iProyectosService.eliminarProyectoHabilidad(id);
     }
 
 

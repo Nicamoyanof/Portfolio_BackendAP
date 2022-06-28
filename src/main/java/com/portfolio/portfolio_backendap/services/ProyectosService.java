@@ -80,4 +80,15 @@ public class ProyectosService implements IProyectosService{
     public void eliminarHabilidadProyecto(Integer id) {
         habilidadesProyectosRepository.deleteById(id);
     }
+
+    @Override
+    public void eliminarProyectoHabilidad(Integer id) {
+        List<HabilidadesProyectos> listProyectos = habilidadesProyectosRepository.findAll();
+        for(Integer i=0;i<listProyectos.size();i++) {
+            if(listProyectos.get(i).getProyectosByIdProyecto().getIdProyecto()==id){
+                habilidadesProyectosRepository.deleteById(listProyectos.get(i).getIdHabPro());
+            }
+        }
+    }
+
 }

@@ -8,6 +8,7 @@ import com.portfolio.portfolio_backendap.repository.PersonasRepository;
 import com.portfolio.portfolio_backendap.utils.ModelPerEst;
 import com.portfolio.portfolio_backendap.utils.ModelPerHab;
 import com.portfolio.portfolio_backendap.utils.ModelPerPro;
+import org.hibernate.annotations.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,12 +40,20 @@ public class PersonaService implements IPersonaService{
     private PersonasProyectosRepository personasProyectosRepository;
 
     @Override
-    public void editarPersona(Integer id, Personas personas) {
+    public boolean editarPersona(Integer id, Personas personas) {
         Personas personaEditar;
         personaEditar = personas;
-        personaEditar.setIdPersona(id);
-        personasRepository.save(personaEditar);
+        try{
+            personaEditar.setIdPersona(id);
+            personasRepository.save(personaEditar);
+
+        }catch(Exception e){
+            return false;
+        }
+        return true;
     }
+
+
 
     //<------ SERVICE PERSONAS ------>
 
@@ -123,6 +132,21 @@ public class PersonaService implements IPersonaService{
         return listaPE;
     }
 
+    @Override
+    public PersonasEstudios getEstudioPersona(int id) {
+        return personasEstudiosRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void editarEstudioPersona(int id, ModelPerEst personasEstudios) {
+        PersonasEstudios perEstudios = new PersonasEstudios();
+        perEstudios.setIdPersonasEstudios(id);
+        perEstudios.setPersonasByIdPersona(getPersona(personasEstudios.getPersonas()));
+        perEstudios.setEducacionesByIdInstituto( educacionesService.getEducacion(personasEstudios.getEducaciones()));
+        perEstudios.setAnioInicio(personasEstudios.getAnioInicio());
+        perEstudios.setAnioFinal(personasEstudios.getAnioFinal());
+        personasEstudiosRepository.save(perEstudios);
+    }
 
 
     //<------ SERVICE PERSONAS HABILIDADES ------>
@@ -155,7 +179,7 @@ public class PersonaService implements IPersonaService{
             }
         }
 
-        return listaHabilidades;
+        return (listaHabilidades);
     }
 
     @Override
@@ -212,7 +236,13 @@ public class PersonaService implements IPersonaService{
 
     @Override
     public void eliminarPersonaProyecto(Integer id) {
-        personasProyectosRepository.deleteById(id);
+        List<PersonasProyectos> listaPersonasProyectos = getPersonasProyectos();
+        for(int i=0;i<listaPersonasProyectos.size();i++) {
+            if(listaPersonasProyectos.get(i).getProyectosByIdProyecto().getIdProyecto()==id){
+                personasProyectosRepository.deleteById(listaPersonasProyectos.get(i).getIdPerHab());
+            }
+        }
+
     }
 
 

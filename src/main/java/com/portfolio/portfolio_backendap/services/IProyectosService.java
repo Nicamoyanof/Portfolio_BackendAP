@@ -21,4 +21,6 @@ public interface IProyectosService {
     List<Habilidades> getHabilidadesProyecto(Integer id);
 
     void eliminarHabilidadProyecto(Integer id);
+
+    void eliminarProyectoHabilidad(Integer id);
 }
