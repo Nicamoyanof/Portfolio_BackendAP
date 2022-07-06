@@ -51,7 +51,7 @@ public class Personas {
     private String github;
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuarios usuariosByIdUsuario;
+    private Usuarios usuariosByIdUsuario_0;
 
     public Personas(){
         nombre="";
@@ -193,11 +193,13 @@ public class Personas {
         return Objects.hash(idPersona, nombre, apellido, profesion, ciudad, pais, descripcion, imgPerfil, imgBanner, imgBannerM, logo, email, linkedin, github);
     }
 
+
     public Usuarios getUsuariosByIdUsuario() {
-        return usuariosByIdUsuario;
+        return usuariosByIdUsuario_0;
     }
 
-    public void setUsuariosByIdUsuario(Usuarios usuariosByIdUsuario) {
-        this.usuariosByIdUsuario = usuariosByIdUsuario;
+    public void setUsuariosByIdUsuario(Usuarios usuariosByIdUsuario_0) {
+        this.usuariosByIdUsuario_0 = usuariosByIdUsuario_0;
     }
+
 }

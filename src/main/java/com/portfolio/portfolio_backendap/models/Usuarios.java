@@ -1,6 +1,7 @@
 package com.portfolio.portfolio_backendap.models;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,9 @@ public class Usuarios {
     @Basic
     @Column(name = "pass", nullable = true, length = 500)
     private String pass;
+    @Basic
+    @Column(name = "rol", nullable = true, length = 250)
+    private String rol;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -52,4 +56,14 @@ public class Usuarios {
     public int hashCode() {
         return Objects.hash(idUsuario, email, pass);
     }
+
+
+    public String getRoles() {
+        return rol;
+    }
+
+    public void setRoles(String rol) {
+        this.rol = rol;
+    }
+
 }

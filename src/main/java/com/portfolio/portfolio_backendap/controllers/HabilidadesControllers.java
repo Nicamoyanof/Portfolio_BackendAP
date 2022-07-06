@@ -3,6 +3,7 @@ package com.portfolio.portfolio_backendap.controllers;
 import com.portfolio.portfolio_backendap.models.Habilidades;
 import com.portfolio.portfolio_backendap.services.IHabilidadesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,11 +25,13 @@ public class HabilidadesControllers {
         return iHabilidadesService.getHabilidad(id);
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("api/habilidad")
     public void agregarHabilidad(@RequestBody Habilidades habilidades){
         iHabilidadesService.agregarHabilidad(habilidades);
     }
 
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("api/habilidad/{id}")
     public void eliminarHabilidad(@PathVariable Integer id){
         iHabilidadesService.eliminarHabilidad(id);

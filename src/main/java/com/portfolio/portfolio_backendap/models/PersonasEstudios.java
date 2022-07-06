@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "personas_estudios", schema = "fullstack_ap", catalog = "")
+@Table(name = "personas_estudios", schema = "u937354102_portfolio", catalog = "")
 public class PersonasEstudios {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -18,10 +18,10 @@ public class PersonasEstudios {
     private Integer anioFinal;
     @ManyToOne
     @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
-    private Personas personasByIdPersona;
+    private Personas personasByIdPersona_0;
     @ManyToOne
     @JoinColumn(name = "id_instituto", referencedColumnName = "id_instituto")
-    private Educaciones educacionesByIdInstituto;
+    private Educaciones educacionesByIdInstituto_0;
 
     public Integer getAnioInicio() {
         return anioInicio;
@@ -55,22 +55,6 @@ public class PersonasEstudios {
         return this.anioFinal;
     }
 
-    public Personas getPersonasByIdPersona() {
-        return personasByIdPersona;
-    }
-
-    public void setPersonasByIdPersona(Personas personasByIdPersona) {
-        this.personasByIdPersona = personasByIdPersona;
-    }
-
-    public Educaciones getEducacionesByIdInstituto() {
-        return educacionesByIdInstituto;
-    }
-
-    public void setEducacionesByIdInstituto(Educaciones educacionesByIdInstituto) {
-        this.educacionesByIdInstituto = educacionesByIdInstituto;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -83,5 +67,22 @@ public class PersonasEstudios {
     @Override
     public int hashCode() {
         return Objects.hash(idPersonasEstudios,  anioInicio, anioFinal);
+    }
+
+
+    public Personas getPersonasByIdPersona() {
+        return personasByIdPersona_0;
+    }
+
+    public void setPersonasByIdPersona(Personas personasByIdPersona_0) {
+        this.personasByIdPersona_0 = personasByIdPersona_0;
+    }
+
+    public Educaciones getEducacionesByIdInstituto() {
+        return educacionesByIdInstituto_0;
+    }
+
+    public void setEducacionesByIdInstituto(Educaciones educacionesByIdInstituto_0) {
+        this.educacionesByIdInstituto_0 = educacionesByIdInstituto_0;
     }
 }

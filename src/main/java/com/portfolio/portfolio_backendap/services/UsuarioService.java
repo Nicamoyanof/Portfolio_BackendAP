@@ -3,9 +3,8 @@ package com.portfolio.portfolio_backendap.services;
 import com.portfolio.portfolio_backendap.models.Personas;
 import com.portfolio.portfolio_backendap.models.Usuarios;
 import com.portfolio.portfolio_backendap.repository.UsuarioRepository;
-import de.mkammerer.argon2.Argon2;
-import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +16,10 @@ public class UsuarioService implements  IUsuarioService{
     private UsuarioRepository usuarioRepository;
     @Autowired
     private PersonaService personaService;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+
 
     @Override
     public List<Usuarios> getUsuarios() {
@@ -31,11 +34,25 @@ public class UsuarioService implements  IUsuarioService{
     }
 
     @Override
+    public Usuarios getUsuartioByUsername(String username) {
+       List<Usuarios> usuarios = getUsuarios();
+
+       for (Integer i=0;i<usuarios.size();i++){
+           if(usuarios.get(i).getEmail().equals(username)) {
+               return usuarios.get(i);
+           }
+       }
+       return null;
+
+    }
+
+    @Override
     public void agregarUsuario(Usuarios usuarios) {
 
-        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        String hash = argon2.hash(1,1024,1, usuarios.getPass());
-        usuarios.setPass(hash);
+        String passEncripted = passwordEncoder.encode(usuarios.getPass());
+
+        usuarios.setPass(passEncripted);
+
         boolean validator=false;
         for (Usuarios uValidator : getUsuarios()){
             if(uValidator.getEmail().equals(usuarios.getEmail())){
@@ -61,6 +78,22 @@ public class UsuarioService implements  IUsuarioService{
         }
 
 
+    }
+
+    @Override
+    public Integer personaLogeada(String username) {
+
+        Usuarios usuario = getUsuartioByUsername(username);
+        List<Personas> listaPersonas = personaService.getPersonas();
+        for(int i = 0; i < listaPersonas.size(); i++){
+            if (listaPersonas.get(i).getUsuariosByIdUsuario().getIdUsuario() == (usuario.getIdUsuario())){
+
+                return listaPersonas.get(i).getIdPersona();
+
+            }
+        }
+
+        return null;
     }
 
 }

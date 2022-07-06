@@ -6,6 +6,7 @@ import com.portfolio.portfolio_backendap.utils.ModelPerEst;
 import com.portfolio.portfolio_backendap.utils.ModelPerHab;
 import com.portfolio.portfolio_backendap.utils.ModelPerPro;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class PersonasController {
     @Autowired
     private IPersonaService iPersonaService;
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("api/personas")
     public List<Personas> getPersonas(){
         return iPersonaService.getPersonas();
@@ -27,16 +29,19 @@ public class PersonasController {
         return iPersonaService.getPersona(id);
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("api/persona")
     public void agregarPersona(@RequestBody Personas personas){
         iPersonaService.agregarPersona(personas);
     }
 
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("api/persona/{id}")
     public void eliminarPersona(@PathVariable Integer id){
         iPersonaService.eliminarPersona(id);
     }
 
+    @Secured("ROLE_ADMIN")
     @PutMapping("api/persona/{id}")
     public boolean editarPersona(@PathVariable Integer id, @RequestBody Personas personas){
         return iPersonaService.editarPersona(id,personas);
@@ -44,11 +49,13 @@ public class PersonasController {
 
    //<-----  CONTROLLERS PERSONAS ESTUDIOS ----->
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("api/personas/estudios")
     public List<PersonasEstudios> getPersonasEstudios(){
         return iPersonaService.getPersonasEstudios();
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("api/persona/estudio")
     public void agregarPersonaEstudio(@RequestBody ModelPerEst perEst){
         iPersonaService.agregarPersonaEstudio(perEst);
@@ -63,6 +70,8 @@ public class PersonasController {
     public List<Educaciones> getEducacionesPersona(@PathVariable Integer id){
         return iPersonaService.getEstudiosPersona(id);
     }
+
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("api/persona/estudio/{id}")
     public void eliminarPersonaEstudio(@PathVariable Integer id){
         iPersonaService.eliminarPersonaEstudio(id);
@@ -73,6 +82,7 @@ public class PersonasController {
         return iPersonaService.getEstudioPersona(id);
     }
 
+    @Secured("ROLE_ADMIN")
     @PutMapping("api/persona/estudio/{id}")
     public void editarEstudioPersona(@PathVariable int id, @RequestBody ModelPerEst personasEstudios){
         iPersonaService.editarEstudioPersona(id, personasEstudios);
@@ -85,6 +95,7 @@ public class PersonasController {
         return iPersonaService.getPersonasHabilidades();
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("api/persona/habilidad")
     public void agregarPersonaHabilidad(@RequestBody ModelPerHab perHab){
         iPersonaService.agregarPersonaHabilidad(perHab);
@@ -100,6 +111,7 @@ public class PersonasController {
         return iPersonaService.getHabilidadesPersona(id);
     }
 
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("api/persona/habilidad/{id}")
     public void eliminarPersonaHabilidad(@PathVariable Integer id){
         iPersonaService.eliminarPersonaHabilidad(id);
@@ -112,6 +124,7 @@ public class PersonasController {
         return iPersonaService.getPersonasProyectos();
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("api/persona/proyecto")
     public void agregarPersonaProyecto(@RequestBody ModelPerPro perPro){
         iPersonaService.agregarPersonaProyecto(perPro);
@@ -121,6 +134,8 @@ public class PersonasController {
     public List<Proyectos> getProyectosPersona(@PathVariable Integer id){
         return iPersonaService.getProyectosPersona(id);
     }
+
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("api/persona/proyecto/{id}")
     public void eliminarPersonaProyecto(@PathVariable Integer id){
         iPersonaService.eliminarPersonaProyecto(id);

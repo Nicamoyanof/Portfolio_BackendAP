@@ -3,6 +3,7 @@ package com.portfolio.portfolio_backendap.controllers;
 import com.portfolio.portfolio_backendap.models.Educaciones;
 import com.portfolio.portfolio_backendap.services.IEducaciopnesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,11 +24,13 @@ public class EducacionesControllers {
         return iEducaciopnesService.getEducacion(id);
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("api/educacion")
     public void agregarEducacion(@RequestBody Educaciones educaciones){
         iEducaciopnesService.agregarEducacion(educaciones);
     }
 
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("api/educaciones/{id}")
     public void eliminarEducacion(@PathVariable Integer id){
         iEducaciopnesService.eliminarEducacion(id);

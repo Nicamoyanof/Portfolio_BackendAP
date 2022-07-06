@@ -10,6 +10,9 @@ public interface IUsuarioService {
 
     Usuarios getUsuario(Integer id);
 
+    Usuarios getUsuartioByUsername(String username);
+
     void agregarUsuario(Usuarios usuarios);
 
+    Integer personaLogeada(String username);
 }
