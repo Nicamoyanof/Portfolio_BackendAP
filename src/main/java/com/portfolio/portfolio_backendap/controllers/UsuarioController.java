@@ -3,6 +3,7 @@ package com.portfolio.portfolio_backendap.controllers;
 import com.portfolio.portfolio_backendap.models.Usuarios;
 import com.portfolio.portfolio_backendap.services.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,10 @@ public class UsuarioController {
         return iUsuarioService.getUsuarios();
     }
 
+    @GetMapping("/")
+    public HttpStatus inicio(){
+        return HttpStatus.OK;
+    }
 
     @Secured("ROLE_ADMIN")
     @GetMapping("api/usuario/{id}")

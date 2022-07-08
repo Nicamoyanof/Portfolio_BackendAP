@@ -1,7 +1,6 @@
 package com.portfolio.portfolio_backendap.services;
 
 import com.portfolio.portfolio_backendap.models.Habilidades;
-import com.portfolio.portfolio_backendap.models.HabilidadesProyectos;
 import com.portfolio.portfolio_backendap.models.Proyectos;
 import com.portfolio.portfolio_backendap.utils.ModelHabPro;
 

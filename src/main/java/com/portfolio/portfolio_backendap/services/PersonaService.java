@@ -1,5 +1,6 @@
 package com.portfolio.portfolio_backendap.services;
 
+import com.portfolio.portfolio_backendap.services.EducacionesService;
 import com.portfolio.portfolio_backendap.models.*;
 import com.portfolio.portfolio_backendap.repository.PersonasEstudiosRepository;
 import com.portfolio.portfolio_backendap.repository.PersonasHabilidadesRepository;
@@ -8,7 +9,6 @@ import com.portfolio.portfolio_backendap.repository.PersonasRepository;
 import com.portfolio.portfolio_backendap.utils.ModelPerEst;
 import com.portfolio.portfolio_backendap.utils.ModelPerHab;
 import com.portfolio.portfolio_backendap.utils.ModelPerPro;
-import org.hibernate.annotations.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

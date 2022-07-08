@@ -1,5 +1,6 @@
 package com.portfolio.portfolio_backendap;
 
+
 import com.portfolio.portfolio_backendap.Auth.Filter.JWTAuthenticationFilter;
 import com.portfolio.portfolio_backendap.Auth.Filter.JWTAuthorizationFilter;
 import com.portfolio.portfolio_backendap.services.JpaUserDetailsService;
@@ -40,7 +41,7 @@ public class SpringSecurityConfig {
             Exception {
         http.cors().configurationSource(request -> {
                     var cors = new CorsConfiguration();
-                    cors.setAllowedOrigins(List.of("http://localhost:4200", "http://127.0.0.1:80", "http://**"));
+                    cors.setAllowedOrigins(List.of("http://localhost:4200", "http://127.0.0.1:80", "http://**", "**", "*"));
                     cors.setAllowedMethods(List.of("GET","POST", "PUT", "DELETE", "OPTIONS"));
                     cors.setAllowedHeaders(List.of("*"));
                     return cors;

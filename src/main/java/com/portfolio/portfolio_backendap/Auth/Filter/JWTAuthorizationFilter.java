@@ -1,8 +1,8 @@
 package com.portfolio.portfolio_backendap.Auth.Filter;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.portfolio_backendap.Auth.SimpleGrantedAuthorityMixin;
-import com.portfolio.portfolio_backendap.utils.Roles;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,10 +17,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 

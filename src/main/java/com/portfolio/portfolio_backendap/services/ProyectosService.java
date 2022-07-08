@@ -7,7 +7,6 @@ import com.portfolio.portfolio_backendap.repository.HabilidadesProyectosReposito
 import com.portfolio.portfolio_backendap.repository.ProyectoRepository;
 import com.portfolio.portfolio_backendap.utils.ModelHabPro;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.Root;
