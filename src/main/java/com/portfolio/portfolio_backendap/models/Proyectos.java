@@ -19,6 +19,9 @@ public class Proyectos {
     @Basic
     @Column(name = "link_github", nullable = true, length = 400)
     private String linkGithub;
+    @Basic
+    @Column(name = "url", nullable = false, length = 250)
+    private String url;
 
     public int getIdProyecto() {
         return idProyecto;
@@ -65,4 +68,11 @@ public class Proyectos {
         return Objects.hash(idProyecto, nombre, imgProyecto, linkGithub);
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }
