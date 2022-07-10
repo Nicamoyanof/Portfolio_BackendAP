@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface EducacionesRepository extends JpaRepository<Educaciones, Integer> {
 
-    @Query("SELECT e FROM PersonasEstudios pe JOIN Educaciones e ON e.idInstituto=pe.educacionesByIdInstituto_0.idInstituto JOIN Personas p ON p.idPersona = pe.personasByIdPersona_0.idPersona WHERE p.idPersona=(:idPersona)")
+    @Query("SELECT pe FROM PersonasEstudios pe JOIN Educaciones e ON e.idInstituto=pe.educacionesByIdInstituto_0.idInstituto JOIN Personas p ON p.idPersona = pe.personasByIdPersona_0.idPersona WHERE p.idPersona=(:idPersona)")
     public List<PersonasEstudios> findAllEducationsForPerson(@Param("idPersona") Integer idPersona);
 
 }
