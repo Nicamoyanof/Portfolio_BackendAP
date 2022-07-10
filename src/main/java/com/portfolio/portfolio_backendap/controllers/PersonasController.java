@@ -62,7 +62,7 @@ public class PersonasController {
     }
 
     @GetMapping("api/persona/{id}/estudios")
-    public List<PersonasEstudios> getPersonasEstudiosId(@PathVariable Integer id){
+    public List<Educaciones> getPersonasEstudiosId(@PathVariable Integer id){
         return iPersonaService.getPersonasEstudiosId(id);
     }
 
@@ -102,7 +102,7 @@ public class PersonasController {
     }
 
     @GetMapping("api/persona/{id}/habilidades")
-    public List<PersonasHabilidades> getPersonaHabilidades(@PathVariable Integer id){
+    public List<Habilidades> getPersonaHabilidades(@PathVariable Integer id){
         return iPersonaService.getPersonaHabilidades(id);
     }
 

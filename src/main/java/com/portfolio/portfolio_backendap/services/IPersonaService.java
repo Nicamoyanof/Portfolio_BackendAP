@@ -40,9 +40,9 @@ public interface IPersonaService {
 
     void eliminarPersonaProyecto(Integer id);
 
-    List<PersonasEstudios> getPersonasEstudiosId(Integer id);
+    List<Educaciones> getPersonasEstudiosId(Integer id);
 
-    List<PersonasHabilidades> getPersonaHabilidades(Integer id);
+    List<Habilidades> getPersonaHabilidades(Integer id);
 
 
     boolean editarPersona(Integer id, Personas personas);

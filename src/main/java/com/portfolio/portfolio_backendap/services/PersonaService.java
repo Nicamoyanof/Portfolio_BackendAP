@@ -1,11 +1,7 @@
 package com.portfolio.portfolio_backendap.services;
 
-import com.portfolio.portfolio_backendap.services.EducacionesService;
 import com.portfolio.portfolio_backendap.models.*;
-import com.portfolio.portfolio_backendap.repository.PersonasEstudiosRepository;
-import com.portfolio.portfolio_backendap.repository.PersonasHabilidadesRepository;
-import com.portfolio.portfolio_backendap.repository.PersonasProyectosRepository;
-import com.portfolio.portfolio_backendap.repository.PersonasRepository;
+import com.portfolio.portfolio_backendap.repository.*;
 import com.portfolio.portfolio_backendap.utils.ModelPerEst;
 import com.portfolio.portfolio_backendap.utils.ModelPerHab;
 import com.portfolio.portfolio_backendap.utils.ModelPerPro;
@@ -28,13 +24,22 @@ public class PersonaService implements IPersonaService{
     private EducacionesService educacionesService;
 
     @Autowired
+    private EducacionesRepository educacionesRepository;
+
+    @Autowired
     private HabilidadesService habilidadesService;
+
+    @Autowired
+    private HabilidadesRepository habilidadesRepository;
 
     @Autowired
     private PersonasHabilidadesRepository personasHabilidadesRepository;
 
     @Autowired
     private ProyectosService proyectosService;
+
+    @Autowired
+    private ProyectoRepository proyectoRepository;
 
     @Autowired
     private PersonasProyectosRepository personasProyectosRepository;
@@ -121,15 +126,8 @@ public class PersonaService implements IPersonaService{
     }
 
     @Override
-    public List<PersonasEstudios> getPersonasEstudiosId(Integer id) {
-        List<PersonasEstudios> listaPE = new ArrayList<>();
-        for (int i = 0; i < getPersonasEstudios().size(); i++) {
-            if (getPersonasEstudios().get(i).getPersonasByIdPersona().getIdPersona()==id){
-                listaPE.add(getPersonasEstudios().get(i));
-            }
-
-        }
-        return listaPE;
+    public List<Educaciones> getPersonasEstudiosId(Integer id) {
+        return educacionesRepository.findAllEducationsForPerson(id);
     }
 
     @Override
@@ -189,16 +187,8 @@ public class PersonaService implements IPersonaService{
     }
 
     @Override
-    public List<PersonasHabilidades> getPersonaHabilidades(Integer id) {
-        List<PersonasHabilidades> listaPersonasHabilidades = new ArrayList<>();
-        for (int i = 0; i < getPersonasHabilidades().size(); i++) {
-
-            if(getPersonasHabilidades().get(i).getPersonasByIdPersona().getIdPersona()==id){
-                listaPersonasHabilidades.add(getPersonasHabilidades().get(i));
-            }
-
-        }
-        return listaPersonasHabilidades;
+    public List<Habilidades> getPersonaHabilidades(Integer id) {
+       return habilidadesRepository.findAllSkillForPerson(id);
     }
 
 
@@ -223,16 +213,7 @@ public class PersonaService implements IPersonaService{
     @Override
     public List<Proyectos> getProyectosPersona(Integer id) {
 
-        List<PersonasProyectos> listaPersonasProyectos = getPersonasProyectos();
-        List<Proyectos> listaProyectos = new ArrayList<>();
-
-        for (int i = 0; i < listaPersonasProyectos.size(); i++) {
-            if(listaPersonasProyectos.get(i).getPersonasByIdPersona().getIdPersona()==id){
-                listaProyectos.add(listaPersonasProyectos.get(i).getProyectosByIdProyecto());
-            }
-        }
-
-        return listaProyectos;
+        return proyectoRepository.findAllProjectsForPerson(id);
     }
 
     @Override
