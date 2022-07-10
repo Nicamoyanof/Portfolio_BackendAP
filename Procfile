@@ -1,1 +1,1 @@
-web: java -Dserver.port=8080 -jar target/Portfolio_BackendAP-0.0.1-SNAPSHOT.jar
+web: java  -jar target/Portfolio_BackendAP-0.0.1-SNAPSHOT.jar
