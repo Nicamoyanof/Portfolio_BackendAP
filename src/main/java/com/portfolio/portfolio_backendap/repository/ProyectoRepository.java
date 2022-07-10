@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface ProyectoRepository extends JpaRepository<Proyectos,Integer> {
 
-    @Query("SELECT pr FROM PersonasProyectos pp JOIN Proyectos pr ON pr.idProyecto = pp.proyectosByIdProyecto_0.idProyecto JOIN Personas p ON p.idPersona = pp.personasByIdPersona_0.idPersona WHERE p.idPersona=(:idPersona)")
+    @Query("SELECT pp FROM PersonasProyectos pp JOIN Proyectos pr ON pr.idProyecto = pp.proyectosByIdProyecto_0.idProyecto JOIN Personas p ON p.idPersona = pp.personasByIdPersona_0.idPersona WHERE p.idPersona=(:idPersona)")
     public List<PersonasProyectos> findAllProjectsForPerson(@Param("idPersona") Integer idPersona);
 
 }
