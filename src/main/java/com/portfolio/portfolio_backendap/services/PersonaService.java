@@ -126,7 +126,7 @@ public class PersonaService implements IPersonaService{
     }
 
     @Override
-    public List<Educaciones> getPersonasEstudiosId(Integer id) {
+    public List<PersonasEstudios> getPersonasEstudiosId(Integer id) {
         return educacionesRepository.findAllEducationsForPerson(id);
     }
 
@@ -187,7 +187,7 @@ public class PersonaService implements IPersonaService{
     }
 
     @Override
-    public List<Habilidades> getPersonaHabilidades(Integer id) {
+    public List<PersonasHabilidades> getPersonaHabilidades(Integer id) {
        return habilidadesRepository.findAllSkillForPerson(id);
     }
 
@@ -211,7 +211,7 @@ public class PersonaService implements IPersonaService{
     }
 
     @Override
-    public List<Proyectos> getProyectosPersona(Integer id) {
+    public List<PersonasProyectos> getProyectosPersona(Integer id) {
 
         return proyectoRepository.findAllProjectsForPerson(id);
     }
