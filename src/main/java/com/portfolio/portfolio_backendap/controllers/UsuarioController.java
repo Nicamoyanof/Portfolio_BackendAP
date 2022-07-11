@@ -52,4 +52,10 @@ public class UsuarioController {
     public Integer personaLogeada(@PathVariable String username) {
         return iUsuarioService.personaLogeada(username);
     }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/api/access")
+    public HttpStatus permitido(){
+        return HttpStatus.OK;
+    }
 }
